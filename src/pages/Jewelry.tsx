@@ -6,20 +6,20 @@ import { Header } from '@/components/Header';
 import { AnimatedCarousel } from '@/components/AnimatedCarousel';
 import { products } from '@/data/products';
 
-const MenProducts = () => {
+const Jewelry = () => {
   const [searchQuery, setSearchQuery] = useState('');
 
-  const menProducts = products.filter(product => 
-    product.category === "men's clothing"
+  const jewelryProducts = products.filter(product => 
+    product.category === 'jewelery'
   );
 
   // Advertisement carousel images from Unsplash
   const adCarouselItems = [
     {
       id: 'ad1',
-      title: "Men's Fashion Sale",
-      description: "Up to 50% off on premium menswear",
-      image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1200&h=400&fit=crop',
+      title: "Luxury Jewelry",
+      description: "Exquisite pieces for special moments",
+      image: 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=1200&h=400&fit=crop',
       category: 'Advertisement',
       brand: 'SmartCart',
       rating: 5,
@@ -27,10 +27,10 @@ const MenProducts = () => {
       price: 0
     },
     {
-      id: 'ad2', 
-      title: "New Arrivals",
-      description: "Latest trends in men's clothing",
-      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1200&h=400&fit=crop',
+      id: 'ad2',
+      title: "Diamond Collection",
+      description: "Sparkle with our premium diamond jewelry",
+      image: 'https://images.unsplash.com/photo-1602173574767-37ac01994b2a?w=1200&h=400&fit=crop',
       category: 'Advertisement',
       brand: 'SmartCart',
       rating: 5,
@@ -39,10 +39,10 @@ const MenProducts = () => {
     },
     {
       id: 'ad3',
-      title: "Premium Collection",
-      description: "Exclusive designer wear for men",
-      image: 'https://images.unsplash.com/photo-1556906781-9a412961c28c?w=1200&h=400&fit=crop',
-      category: 'Advertisement', 
+      title: "Wedding Jewelry",
+      description: "Perfect pieces for your special day",
+      image: 'https://images.unsplash.com/photo-1611652022419-a9419f74343d?w=1200&h=400&fit=crop',
+      category: 'Advertisement',
       brand: 'SmartCart',
       rating: 5,
       reviews: 0,
@@ -58,7 +58,7 @@ const MenProducts = () => {
         <div className="mb-8">
           <AnimatedCarousel 
             products={adCarouselItems}
-            title="Men's Collection Highlights"
+            title="Jewelry Collection Highlights"
             autoPlay={true}
             autoPlayInterval={4000}
           />
@@ -66,10 +66,10 @@ const MenProducts = () => {
 
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-gray-900 mb-2">
-            Men's Clothing
+            Jewelry & Accessories
           </h1>
           <p className="text-gray-600 mb-6">
-            Discover the latest trends in men's fashion and accessories
+            Discover beautiful jewelry and accessories for every occasion
           </p>
           <SearchBar onSearch={setSearchQuery} />
         </div>
@@ -77,7 +77,7 @@ const MenProducts = () => {
         <div className="w-full">
           <ProductGrid 
             searchQuery={searchQuery} 
-            products={menProducts}
+            products={jewelryProducts}
           />
         </div>
       </main>
@@ -85,4 +85,4 @@ const MenProducts = () => {
   );
 };
 
-export default MenProducts;
+export default Jewelry;

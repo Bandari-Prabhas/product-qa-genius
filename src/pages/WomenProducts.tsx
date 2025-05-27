@@ -3,28 +3,70 @@ import React, { useState } from 'react';
 import { ProductGrid } from '@/components/ProductGrid';
 import { SearchBar } from '@/components/SearchBar';
 import { Header } from '@/components/Header';
-import { FilterSidebar } from '@/components/FilterSidebar';
+import { AnimatedCarousel } from '@/components/AnimatedCarousel';
 import { products } from '@/data/products';
 
 const WomenProducts = () => {
   const [searchQuery, setSearchQuery] = useState('');
-  const [filters, setFilters] = useState({
-    priceRange: [0, 50000],
-    brands: [],
-    categories: []
-  });
 
   const womenProducts = products.filter(product => 
-    product.category === 'Women' || product.category === 'Fashion'
+    product.category === "women's clothing"
   );
+
+  // Advertisement carousel images from Unsplash
+  const adCarouselItems = [
+    {
+      id: 'ad1',
+      title: "Women's Fashion Week",
+      description: "Exclusive collection for modern women",
+      image: 'https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=1200&h=400&fit=crop',
+      category: 'Advertisement',
+      brand: 'SmartCart',
+      rating: 5,
+      reviews: 0,
+      price: 0
+    },
+    {
+      id: 'ad2',
+      title: "Spring Collection",
+      description: "Fresh styles for the new season",
+      image: 'https://images.unsplash.com/photo-1445205170230-053b83016050?w=1200&h=400&fit=crop',
+      category: 'Advertisement',
+      brand: 'SmartCart', 
+      rating: 5,
+      reviews: 0,
+      price: 0
+    },
+    {
+      id: 'ad3',
+      title: "Designer Dresses",
+      description: "Elegant dresses for every occasion",
+      image: 'https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=1200&h=400&fit=crop',
+      category: 'Advertisement',
+      brand: 'SmartCart',
+      rating: 5,
+      reviews: 0,
+      price: 0
+    }
+  ];
 
   return (
     <div className="min-h-screen bg-gray-50">
       <Header />
       <main className="container mx-auto px-4 py-6">
+        {/* Advertisement Carousel */}
+        <div className="mb-8">
+          <AnimatedCarousel 
+            products={adCarouselItems}
+            title="Women's Collection Highlights"
+            autoPlay={true}
+            autoPlayInterval={4000}
+          />
+        </div>
+
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-gray-900 mb-2">
-            Women's Collection
+            Women's Clothing
           </h1>
           <p className="text-gray-600 mb-6">
             Explore elegant styles and the latest fashion trends for women
@@ -32,20 +74,11 @@ const WomenProducts = () => {
           <SearchBar onSearch={setSearchQuery} />
         </div>
         
-        <div className="flex gap-6">
-          <div className="w-1/4">
-            <FilterSidebar 
-              products={womenProducts} 
-              onFiltersChange={setFilters}
-            />
-          </div>
-          <div className="w-3/4">
-            <ProductGrid 
-              searchQuery={searchQuery} 
-              products={womenProducts}
-              filters={filters}
-            />
-          </div>
+        <div className="w-full">
+          <ProductGrid 
+            searchQuery={searchQuery} 
+            products={womenProducts}
+          />
         </div>
       </main>
     </div>

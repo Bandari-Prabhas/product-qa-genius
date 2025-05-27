@@ -9,6 +9,7 @@ import ProductDetail from "./pages/ProductDetail";
 import MenProducts from "./pages/MenProducts";
 import WomenProducts from "./pages/WomenProducts";
 import Electronics from "./pages/Electronics";
+import Jewelry from "./pages/Jewelry";
 import LikedProducts from "./pages/LikedProducts";
 import UserProfile from "./pages/UserProfile";
 import NotFound from "./pages/NotFound";
@@ -27,6 +28,7 @@ const App = () => (
           <Route path="/men" element={<MenProducts />} />
           <Route path="/women" element={<WomenProducts />} />
           <Route path="/electronics" element={<Electronics />} />
+          <Route path="/jewelry" element={<Jewelry />} />
           <Route path="/liked" element={<LikedProducts />} />
           <Route path="/profile" element={<UserProfile />} />
           <Route path="*" element={<NotFound />} />

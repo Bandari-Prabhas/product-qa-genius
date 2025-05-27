@@ -40,6 +40,12 @@ export const Header = () => {
             >
               Electronics
             </button>
+            <button 
+              onClick={() => navigate('/jewelry')}
+              className="text-gray-700 hover:text-blue-600 transition-colors"
+            >
+              Jewelry
+            </button>
           </nav>
 
           <div className="flex items-center space-x-4">
