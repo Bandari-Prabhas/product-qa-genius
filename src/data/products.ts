@@ -1,4 +1,3 @@
-
 import { Product } from '@/types/product';
 
 export const products: Product[] = [
@@ -43,7 +42,7 @@ export const products: Product[] = [
     originalPrice: 999,
     discount: 40,
     image: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=500&h=500&fit=crop',
-    category: 'Clothing',
+    category: 'Men',
     brand: 'ComfortWear',
     rating: 4.2,
     reviews: 856,
@@ -170,5 +169,58 @@ export const products: Product[] = [
         answer: 'Yes, this bottle is suitable for carbonated beverages and will maintain the fizz.'
       }
     ]
+  },
+  {
+    id: '7',
+    title: 'Men\'s Formal Dress Shirt',
+    description: 'Premium cotton dress shirt perfect for office and formal occasions. Features non-iron technology and classic fit.',
+    price: 1299,
+    originalPrice: 1999,
+    discount: 35,
+    image: 'https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=500&h=500&fit=crop',
+    category: 'Men',
+    brand: 'FormalFit',
+    rating: 4.3,
+    reviews: 324,
+    sizes: ['S', 'M', 'L', 'XL', 'XXL'],
+    colors: ['White', 'Light Blue', 'Black'],
+    material: '100% Cotton',
+    color: 'White',
+    features: [
+      'Non-iron technology',
+      'Classic fit design',
+      'Mother of pearl buttons',
+      'Spread collar',
+      'Machine washable'
+    ]
+  },
+  {
+    id: '8',
+    title: 'Men\'s Running Shoes',
+    description: 'Lightweight running shoes with advanced cushioning technology. Perfect for daily runs and gym workouts.',
+    price: 2999,
+    originalPrice: 4499,
+    discount: 33,
+    image: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500&h=500&fit=crop',
+    category: 'Men',
+    brand: 'RunMax',
+    rating: 4.6,
+    reviews: 892,
+    sizes: ['7', '8', '9', '10', '11', '12'],
+    colors: ['Black', 'White', 'Blue', 'Gray'],
+    material: 'Mesh & Rubber',
+    color: 'Black',
+    features: [
+      'Advanced cushioning technology',
+      'Breathable mesh upper',
+      'Durable rubber outsole',
+      'Lightweight design',
+      'Arch support'
+    ]
   }
 ];
+
+// Featured products for carousel (mix of categories)
+export const featuredProducts = products.filter(product => 
+  ['1', '2', '7', '8', '3'].includes(product.id)
+);

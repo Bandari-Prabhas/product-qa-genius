@@ -4,6 +4,7 @@ import { ProductGrid } from '@/components/ProductGrid';
 import { SearchBar } from '@/components/SearchBar';
 import { Header } from '@/components/Header';
 import { FilterSidebar } from '@/components/FilterSidebar';
+import { AnimatedCarousel } from '@/components/AnimatedCarousel';
 import { products } from '@/data/products';
 
 const MenProducts = () => {
@@ -18,10 +19,22 @@ const MenProducts = () => {
     product.category === 'Men' || product.category === 'Fashion'
   );
 
+  const featuredMenProducts = menProducts.slice(0, 5);
+
   return (
     <div className="min-h-screen bg-gray-50">
       <Header />
       <main className="container mx-auto px-4 py-6">
+        {/* Hero Carousel */}
+        <div className="mb-8">
+          <AnimatedCarousel 
+            products={featuredMenProducts}
+            title="Featured Men's Collection"
+            autoPlay={true}
+            autoPlayInterval={4000}
+          />
+        </div>
+
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-gray-900 mb-2">
             Men's Collection
@@ -53,3 +66,4 @@ const MenProducts = () => {
 };
 
 export default MenProducts;
+

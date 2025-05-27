@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import { ProductGrid } from '@/components/ProductGrid';
 import { SearchBar } from '@/components/SearchBar';
 import { Header } from '@/components/Header';
+import { AnimatedCarousel } from '@/components/AnimatedCarousel';
+import { featuredProducts } from '@/data/products';
 
 const Index = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -11,6 +13,16 @@ const Index = () => {
     <div className="min-h-screen bg-gray-50">
       <Header />
       <main className="container mx-auto px-4 py-6">
+        {/* Hero Carousel */}
+        <div className="mb-8">
+          <AnimatedCarousel 
+            products={featuredProducts}
+            title="Today's Best Deals"
+            autoPlay={true}
+            autoPlayInterval={5000}
+          />
+        </div>
+
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-gray-900 mb-2">
             Discover Amazing Products
@@ -27,3 +39,4 @@ const Index = () => {
 };
 
 export default Index;
+
