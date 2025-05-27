@@ -13,12 +13,12 @@ const MenProducts = () => {
     product.category === "men's clothing"
   );
 
-  // Shared carousel - same as home page
-  const sharedCarouselItems = [
+  // Advertisement carousel images from Unsplash
+  const adCarouselItems = [
     {
-      id: 'shared1',
-      title: "Welcome to SmartCart",
-      description: "Your one-stop shop for everything you need",
+      id: 'ad1',
+      title: "Men's Fashion Sale",
+      description: "Up to 50% off on premium menswear",
       image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1200&h=400&fit=crop',
       category: 'Advertisement',
       brand: 'SmartCart',
@@ -27,33 +27,22 @@ const MenProducts = () => {
       price: 0
     },
     {
-      id: 'shared2',
-      title: "Mega Sale Event",
-      description: "Up to 70% off on all categories",
-      image: 'https://images.unsplash.com/photo-1472851294608-062f824d29cc?w=1200&h=400&fit=crop',
-      category: 'Advertisement',
-      brand: 'SmartCart',
-      rating: 5,
-      reviews: 0,
-      price: 0
-    },
-    {
-      id: 'shared3',
-      title: "Free Shipping",
-      description: "On orders above ₹999",
-      image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1200&h=400&fit=crop',
-      category: 'Advertisement',
-      brand: 'SmartCart',
-      rating: 5,
-      reviews: 0,
-      price: 0
-    },
-    {
-      id: 'shared4',
+      id: 'ad2', 
       title: "New Arrivals",
-      description: "Discover the latest trends and products",
-      image: 'https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=1200&h=400&fit=crop',
+      description: "Latest trends in men's clothing",
+      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1200&h=400&fit=crop',
       category: 'Advertisement',
+      brand: 'SmartCart',
+      rating: 5,
+      reviews: 0,
+      price: 0
+    },
+    {
+      id: 'ad3',
+      title: "Premium Collection",
+      description: "Exclusive designer wear for men",
+      image: 'https://images.unsplash.com/photo-1556906781-9a412961c28c?w=1200&h=400&fit=crop',
+      category: 'Advertisement', 
       brand: 'SmartCart',
       rating: 5,
       reviews: 0,
@@ -65,11 +54,11 @@ const MenProducts = () => {
     <div className="min-h-screen bg-gray-50">
       <Header />
       <main className="container mx-auto px-4 py-6">
-        {/* Shared Carousel */}
+        {/* Advertisement Carousel */}
         <div className="mb-8">
           <AnimatedCarousel 
-            products={sharedCarouselItems}
-            title="SmartCart Shopping"
+            products={adCarouselItems}
+            title="Men's Collection Highlights"
             autoPlay={true}
             autoPlayInterval={4000}
           />
