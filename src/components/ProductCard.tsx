@@ -5,6 +5,7 @@ import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Product } from '@/types/product';
 import { useNavigate } from 'react-router-dom';
+import { useLikedProducts } from '@/hooks/useLikedProducts';
 
 interface ProductCardProps {
   product: Product;
@@ -12,9 +13,15 @@ interface ProductCardProps {
 
 export const ProductCard = ({ product }: ProductCardProps) => {
   const navigate = useNavigate();
+  const { toggleLike, isLiked } = useLikedProducts();
 
   const handleClick = () => {
     navigate(`/product/${product.id}`);
+  };
+
+  const handleLikeClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    toggleLike(product);
   };
 
   return (
@@ -29,12 +36,9 @@ export const ProductCard = ({ product }: ProductCardProps) => {
           variant="ghost"
           size="sm"
           className="absolute top-2 right-2 p-2 bg-white/80 hover:bg-white"
-          onClick={(e) => {
-            e.stopPropagation();
-            console.log('Added to wishlist:', product.title);
-          }}
+          onClick={handleLikeClick}
         >
-          <Heart className="h-4 w-4" />
+          <Heart className={`h-4 w-4 ${isLiked(product.id) ? 'fill-red-500 text-red-500' : ''}`} />
         </Button>
         {product.discount && (
           <div className="absolute top-2 left-2 bg-red-500 text-white px-2 py-1 rounded text-sm font-semibold">
