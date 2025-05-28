@@ -3,15 +3,12 @@ import React, { useState } from 'react';
 import { ProductGrid } from '@/components/ProductGrid';
 import { SearchBar } from '@/components/SearchBar';
 import { Header } from '@/components/Header';
-import { AnimatedCarousel } from '@/components/AnimatedCarousel';
-import { products } from '@/data/products';
+import { AdCarousel } from '@/components/AdCarousel';
+import { useFakeStoreProducts } from '@/hooks/useFakeStoreProducts';
 
 const WomenProducts = () => {
   const [searchQuery, setSearchQuery] = useState('');
-
-  const womenProducts = products.filter(product => 
-    product.category === "women's clothing"
-  );
+  const { products, loading, error } = useFakeStoreProducts("women's clothing");
 
   // Advertisement carousel images from Unsplash
   const adCarouselItems = [
@@ -19,36 +16,34 @@ const WomenProducts = () => {
       id: 'ad1',
       title: "Women's Fashion Week",
       description: "Exclusive collection for modern women",
-      image: 'https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=1200&h=400&fit=crop',
-      category: 'Advertisement',
-      brand: 'SmartCart',
-      rating: 5,
-      reviews: 0,
-      price: 0
+      image: 'https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=1200&h=400&fit=crop'
     },
     {
       id: 'ad2',
       title: "Spring Collection",
       description: "Fresh styles for the new season",
-      image: 'https://images.unsplash.com/photo-1445205170230-053b83016050?w=1200&h=400&fit=crop',
-      category: 'Advertisement',
-      brand: 'SmartCart', 
-      rating: 5,
-      reviews: 0,
-      price: 0
+      image: 'https://images.unsplash.com/photo-1445205170230-053b83016050?w=1200&h=400&fit=crop'
     },
     {
       id: 'ad3',
       title: "Designer Dresses",
       description: "Elegant dresses for every occasion",
-      image: 'https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=1200&h=400&fit=crop',
-      category: 'Advertisement',
-      brand: 'SmartCart',
-      rating: 5,
-      reviews: 0,
-      price: 0
+      image: 'https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=1200&h=400&fit=crop'
     }
   ];
+
+  if (error) {
+    return (
+      <div className="min-h-screen bg-gray-50">
+        <Header />
+        <main className="container mx-auto px-4 py-6">
+          <div className="text-center py-12">
+            <p className="text-red-600">Error loading products: {error}</p>
+          </div>
+        </main>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -56,8 +51,8 @@ const WomenProducts = () => {
       <main className="container mx-auto px-4 py-6">
         {/* Advertisement Carousel */}
         <div className="mb-8">
-          <AnimatedCarousel 
-            products={adCarouselItems}
+          <AdCarousel 
+            adItems={adCarouselItems}
             title="Women's Collection Highlights"
             autoPlay={true}
             autoPlayInterval={4000}
@@ -75,10 +70,16 @@ const WomenProducts = () => {
         </div>
         
         <div className="w-full">
-          <ProductGrid 
-            searchQuery={searchQuery} 
-            products={womenProducts}
-          />
+          {loading ? (
+            <div className="text-center py-12">
+              <p className="text-gray-600">Loading products...</p>
+            </div>
+          ) : (
+            <ProductGrid 
+              searchQuery={searchQuery} 
+              products={products}
+            />
+          )}
         </div>
       </main>
     </div>

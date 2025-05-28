@@ -1,16 +1,14 @@
+
 import React, { useState } from 'react';
 import { ProductGrid } from '@/components/ProductGrid';
 import { SearchBar } from '@/components/SearchBar';
 import { Header } from '@/components/Header';
-import { AnimatedCarousel } from '@/components/AnimatedCarousel';
-import { products } from '@/data/products';
+import { AdCarousel } from '@/components/AdCarousel';
+import { useFakeStoreProducts } from '@/hooks/useFakeStoreProducts';
 
 const MenProducts = () => {
   const [searchQuery, setSearchQuery] = useState('');
-
-  const menProducts = products.filter(product => 
-    product.category === "men's clothing"
-  );
+  const { products, loading, error } = useFakeStoreProducts("men's clothing");
 
   // Advertisement carousel images from Unsplash
   const adCarouselItems = [
@@ -18,36 +16,34 @@ const MenProducts = () => {
       id: 'ad1',
       title: "Men's Fashion Sale",
       description: "Up to 50% off on premium menswear",
-      image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1200&h=400&fit=crop',
-      category: 'Advertisement',
-      brand: 'SmartCart',
-      rating: 5,
-      reviews: 0,
-      price: 0
+      image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1200&h=400&fit=crop'
     },
     {
       id: 'ad2', 
       title: "New Arrivals",
       description: "Latest trends in men's clothing",
-      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1200&h=400&fit=crop',
-      category: 'Advertisement',
-      brand: 'SmartCart',
-      rating: 5,
-      reviews: 0,
-      price: 0
+      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1200&h=400&fit=crop'
     },
     {
       id: 'ad3',
       title: "Premium Collection",
       description: "Exclusive designer wear for men",
-      image: 'https://images.unsplash.com/photo-1556906781-9a412961c28c?w=1200&h=400&fit=crop',
-      category: 'Advertisement', 
-      brand: 'SmartCart',
-      rating: 5,
-      reviews: 0,
-      price: 0
+      image: 'https://images.unsplash.com/photo-1556906781-9a412961c28c?w=1200&h=400&fit=crop'
     }
   ];
+
+  if (error) {
+    return (
+      <div className="min-h-screen bg-gray-50">
+        <Header />
+        <main className="container mx-auto px-4 py-6">
+          <div className="text-center py-12">
+            <p className="text-red-600">Error loading products: {error}</p>
+          </div>
+        </main>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -55,8 +51,8 @@ const MenProducts = () => {
       <main className="container mx-auto px-4 py-6">
         {/* Advertisement Carousel */}
         <div className="mb-8">
-          <AnimatedCarousel 
-            products={adCarouselItems}
+          <AdCarousel 
+            adItems={adCarouselItems}
             title="Men's Collection Highlights"
             autoPlay={true}
             autoPlayInterval={4000}
@@ -74,10 +70,16 @@ const MenProducts = () => {
         </div>
         
         <div className="w-full">
-          <ProductGrid 
-            searchQuery={searchQuery} 
-            products={menProducts}
-          />
+          {loading ? (
+            <div className="text-center py-12">
+              <p className="text-gray-600">Loading products...</p>
+            </div>
+          ) : (
+            <ProductGrid 
+              searchQuery={searchQuery} 
+              products={products}
+            />
+          )}
         </div>
       </main>
     </div>

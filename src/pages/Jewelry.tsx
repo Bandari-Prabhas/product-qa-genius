@@ -3,15 +3,12 @@ import React, { useState } from 'react';
 import { ProductGrid } from '@/components/ProductGrid';
 import { SearchBar } from '@/components/SearchBar';
 import { Header } from '@/components/Header';
-import { AnimatedCarousel } from '@/components/AnimatedCarousel';
-import { products } from '@/data/products';
+import { AdCarousel } from '@/components/AdCarousel';
+import { useFakeStoreProducts } from '@/hooks/useFakeStoreProducts';
 
 const Jewelry = () => {
   const [searchQuery, setSearchQuery] = useState('');
-
-  const jewelryProducts = products.filter(product => 
-    product.category === 'jewelery'
-  );
+  const { products, loading, error } = useFakeStoreProducts('jewelery');
 
   // Advertisement carousel images from Unsplash
   const adCarouselItems = [
@@ -19,36 +16,34 @@ const Jewelry = () => {
       id: 'ad1',
       title: "Luxury Jewelry",
       description: "Exquisite pieces for special moments",
-      image: 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=1200&h=400&fit=crop',
-      category: 'Advertisement',
-      brand: 'SmartCart',
-      rating: 5,
-      reviews: 0,
-      price: 0
+      image: 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=1200&h=400&fit=crop'
     },
     {
       id: 'ad2',
       title: "Diamond Collection",
       description: "Sparkle with our premium diamond jewelry",
-      image: 'https://images.unsplash.com/photo-1602173574767-37ac01994b2a?w=1200&h=400&fit=crop',
-      category: 'Advertisement',
-      brand: 'SmartCart',
-      rating: 5,
-      reviews: 0,
-      price: 0
+      image: 'https://images.unsplash.com/photo-1602173574767-37ac01994b2a?w=1200&h=400&fit=crop'
     },
     {
       id: 'ad3',
       title: "Wedding Jewelry",
       description: "Perfect pieces for your special day",
-      image: 'https://images.unsplash.com/photo-1611652022419-a9419f74343d?w=1200&h=400&fit=crop',
-      category: 'Advertisement',
-      brand: 'SmartCart',
-      rating: 5,
-      reviews: 0,
-      price: 0
+      image: 'https://images.unsplash.com/photo-1611652022419-a9419f74343d?w=1200&h=400&fit=crop'
     }
   ];
+
+  if (error) {
+    return (
+      <div className="min-h-screen bg-gray-50">
+        <Header />
+        <main className="container mx-auto px-4 py-6">
+          <div className="text-center py-12">
+            <p className="text-red-600">Error loading products: {error}</p>
+          </div>
+        </main>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -56,8 +51,8 @@ const Jewelry = () => {
       <main className="container mx-auto px-4 py-6">
         {/* Advertisement Carousel */}
         <div className="mb-8">
-          <AnimatedCarousel 
-            products={adCarouselItems}
+          <AdCarousel 
+            adItems={adCarouselItems}
             title="Jewelry Collection Highlights"
             autoPlay={true}
             autoPlayInterval={4000}
@@ -75,10 +70,16 @@ const Jewelry = () => {
         </div>
         
         <div className="w-full">
-          <ProductGrid 
-            searchQuery={searchQuery} 
-            products={jewelryProducts}
-          />
+          {loading ? (
+            <div className="text-center py-12">
+              <p className="text-gray-600">Loading products...</p>
+            </div>
+          ) : (
+            <ProductGrid 
+              searchQuery={searchQuery} 
+              products={products}
+            />
+          )}
         </div>
       </main>
     </div>
