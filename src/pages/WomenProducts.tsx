@@ -1,13 +1,14 @@
+
 import React, { useState } from 'react';
 import { ProductGrid } from '@/components/ProductGrid';
 import { SearchBar } from '@/components/SearchBar';
 import { Header } from '@/components/Header';
 import { AdCarousel } from '@/components/AdCarousel';
-import { useDummyJsonProducts } from '@/hooks/useDummyJsonProducts';
+import { useFakeStoreProducts } from '@/hooks/useFakeStoreProducts';
 
 const WomenProducts = () => {
   const [searchQuery, setSearchQuery] = useState('');
-  const { products, loading, error } = useDummyJsonProducts('womens-dresses', 30);
+  const { products, loading, error } = useFakeStoreProducts("women's clothing");
 
   // Advertisement carousel images from Unsplash
   const adCarouselItems = [
@@ -15,19 +16,19 @@ const WomenProducts = () => {
       id: 'ad1',
       title: "Women's Fashion Week",
       description: "Exclusive collection for modern women",
-      image: 'https://source.unsplash.com/1600x600/?women-fashion'
+      image: 'https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=1200&h=400&fit=crop'
     },
     {
       id: 'ad2',
       title: "Spring Collection",
       description: "Fresh styles for the new season",
-      image: 'https://source.unsplash.com/1600x600/?womens-clothing'
+      image: 'https://images.unsplash.com/photo-1445205170230-053b83016050?w=1200&h=400&fit=crop'
     },
     {
       id: 'ad3',
       title: "Designer Dresses",
       description: "Elegant dresses for every occasion",
-      image: 'https://source.unsplash.com/1600x600/?women'
+      image: 'https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=1200&h=400&fit=crop'
     }
   ];
 

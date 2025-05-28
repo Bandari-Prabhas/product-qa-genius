@@ -1,33 +1,34 @@
+
 import React, { useState } from 'react';
 import { ProductGrid } from '@/components/ProductGrid';
 import { SearchBar } from '@/components/SearchBar';
 import { Header } from '@/components/Header';
 import { AdCarousel } from '@/components/AdCarousel';
-import { useDummyJsonProducts } from '@/hooks/useDummyJsonProducts';
+import { useFakeStoreProducts } from '@/hooks/useFakeStoreProducts';
 
 const MenProducts = () => {
   const [searchQuery, setSearchQuery] = useState('');
-  const { products, loading, error } = useDummyJsonProducts('mens-shirts', 30);
+  const { products, loading, error } = useFakeStoreProducts("men's clothing");
 
   // Advertisement carousel images from Unsplash
   const adCarouselItems = [
     {
       id: 'ad1',
-      title: "Men's Fashion Collection",
-      description: "Discover the latest trends in men's fashion",
-      image: 'https://source.unsplash.com/1600x600/?men-fashion'
+      title: "Men's Fashion Sale",
+      description: "Up to 50% off on premium menswear",
+      image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1200&h=400&fit=crop'
     },
     {
       id: 'ad2', 
-      title: "Premium Menswear",
-      description: "Elevate your style with our premium collection",
-      image: 'https://source.unsplash.com/1600x600/?mens-clothing'
+      title: "New Arrivals",
+      description: "Latest trends in men's clothing",
+      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1200&h=400&fit=crop'
     },
     {
       id: 'ad3',
-      title: "Casual & Formal Wear",
-      description: "Perfect outfits for every occasion",
-      image: 'https://source.unsplash.com/1600x600/?men'
+      title: "Premium Collection",
+      description: "Exclusive designer wear for men",
+      image: 'https://images.unsplash.com/photo-1556906781-9a412961c28c?w=1200&h=400&fit=crop'
     }
   ];
 

@@ -16,8 +16,9 @@ interface DummyJsonProduct {
   images: string[];
 }
 
-export const useDummyJsonProducts = (category?: string, limit: number = 30) => {
+export const useDummyJsonProducts = () => {
   const [products, setProducts] = useState<Product[]>([]);
+  const [categories, setCategories] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -44,38 +45,27 @@ export const useDummyJsonProducts = (category?: string, limit: number = 30) => {
   });
 
   useEffect(() => {
-    const fetchProducts = async () => {
+    const fetchData = async () => {
       try {
         setLoading(true);
         
-        let url = `https://dummyjson.com/products?limit=${limit}`;
-        
-        if (category) {
-          url = `https://dummyjson.com/products/category/${category}`;
+        // Fetch products and categories in parallel
+        const [productsResponse, categoriesResponse] = await Promise.all([
+          fetch('https://dummyjson.com/products?limit=50'),
+          fetch('https://dummyjson.com/products/categories')
+        ]);
+
+        if (!productsResponse.ok || !categoriesResponse.ok) {
+          throw new Error('Failed to fetch data');
         }
+
+        const productsData = await productsResponse.json();
+        const categoriesData = await categoriesResponse.json();
+
+        const transformedProducts = productsData.products.map(transformProduct);
         
-        const response = await fetch(url);
-        if (!response.ok) {
-          throw new Error('Failed to fetch products');
-        }
-        
-        const data = await response.json();
-        const transformedProducts = data.products.map(transformProduct);
-        
-        // If we have fewer products than requested and it's a category, fetch additional products
-        if (transformedProducts.length < limit && category) {
-          const additionalResponse = await fetch(`https://dummyjson.com/products?limit=${limit - transformedProducts.length}&skip=${transformedProducts.length}`);
-          if (additionalResponse.ok) {
-            const additionalData = await additionalResponse.json();
-            const additionalProducts = additionalData.products.map(transformProduct);
-            setProducts([...transformedProducts, ...additionalProducts]);
-          } else {
-            setProducts(transformedProducts);
-          }
-        } else {
-          setProducts(transformedProducts);
-        }
-        
+        setProducts(transformedProducts);
+        setCategories(categoriesData);
         setError(null);
       } catch (err) {
         setError(err instanceof Error ? err.message : 'An error occurred');
@@ -85,8 +75,9 @@ export const useDummyJsonProducts = (category?: string, limit: number = 30) => {
       }
     };
 
-    fetchProducts();
-  }, [category, limit]);
+    fetchData();
+  }, []);
 
-  return { products, loading, error };
+  return { products, categories, loading, error };
 };
+

@@ -1,13 +1,14 @@
+
 import React, { useState } from 'react';
 import { ProductGrid } from '@/components/ProductGrid';
 import { SearchBar } from '@/components/SearchBar';
 import { Header } from '@/components/Header';
 import { AdCarousel } from '@/components/AdCarousel';
-import { useDummyJsonProducts } from '@/hooks/useDummyJsonProducts';
+import { useFakeStoreProducts } from '@/hooks/useFakeStoreProducts';
 
 const Jewelry = () => {
   const [searchQuery, setSearchQuery] = useState('');
-  const { products, loading, error } = useDummyJsonProducts('womens-jewellery', 30);
+  const { products, loading, error } = useFakeStoreProducts('jewelery');
 
   // Advertisement carousel images from Unsplash
   const adCarouselItems = [
@@ -15,19 +16,19 @@ const Jewelry = () => {
       id: 'ad1',
       title: "Luxury Jewelry",
       description: "Exquisite pieces for special moments",
-      image: 'https://source.unsplash.com/1600x600/?jewelry'
+      image: 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=1200&h=400&fit=crop'
     },
     {
       id: 'ad2',
-      title: "Elegant Accessories",
-      description: "Perfect accessories to complete your look",
-      image: 'https://source.unsplash.com/1600x600/?accessories'
+      title: "Diamond Collection",
+      description: "Sparkle with our premium diamond jewelry",
+      image: 'https://images.unsplash.com/photo-1602173574767-37ac01994b2a?w=1200&h=400&fit=crop'
     },
     {
       id: 'ad3',
-      title: "Timeless Beauty",
-      description: "Classic jewelry that never goes out of style",
-      image: 'https://source.unsplash.com/1600x600/?gold'
+      title: "Wedding Jewelry",
+      description: "Perfect pieces for your special day",
+      image: 'https://images.unsplash.com/photo-1611652022419-a9419f74343d?w=1200&h=400&fit=crop'
     }
   ];
 
