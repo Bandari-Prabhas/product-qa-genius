@@ -62,7 +62,20 @@ export const useDummyJsonProducts = (category?: string, limit: number = 30) => {
         const data = await response.json();
         const transformedProducts = data.products.map(transformProduct);
         
-        setProducts(transformedProducts);
+        // If we have fewer products than requested and it's a category, fetch additional products
+        if (transformedProducts.length < limit && category) {
+          const additionalResponse = await fetch(`https://dummyjson.com/products?limit=${limit - transformedProducts.length}&skip=${transformedProducts.length}`);
+          if (additionalResponse.ok) {
+            const additionalData = await additionalResponse.json();
+            const additionalProducts = additionalData.products.map(transformProduct);
+            setProducts([...transformedProducts, ...additionalProducts]);
+          } else {
+            setProducts(transformedProducts);
+          }
+        } else {
+          setProducts(transformedProducts);
+        }
+        
         setError(null);
       } catch (err) {
         setError(err instanceof Error ? err.message : 'An error occurred');

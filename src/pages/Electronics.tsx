@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { ProductGrid } from '@/components/ProductGrid';
 import { SearchBar } from '@/components/SearchBar';
@@ -22,13 +21,13 @@ const Electronics = () => {
       id: 'ad2',
       title: "Smart Devices",
       description: "Transform your lifestyle with smart tech",
-      image: 'https://source.unsplash.com/1600x600/?ecommerce'
+      image: 'https://source.unsplash.com/1600x600/?gadgets'
     },
     {
       id: 'ad3',
-      title: "Gaming Zone",
-      description: "Ultimate gaming experience awaits",
-      image: 'https://source.unsplash.com/1600x600/?shopping'
+      title: "Innovation at its Best",
+      description: "Cutting-edge technology for everyone",
+      image: 'https://source.unsplash.com/1600x600/?technology'
     }
   ];
 

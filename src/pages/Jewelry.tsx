@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { ProductGrid } from '@/components/ProductGrid';
 import { SearchBar } from '@/components/SearchBar';
@@ -20,15 +19,15 @@ const Jewelry = () => {
     },
     {
       id: 'ad2',
-      title: "Diamond Collection",
-      description: "Sparkle with our premium diamond jewelry",
-      image: 'https://source.unsplash.com/1600x600/?ecommerce'
+      title: "Elegant Accessories",
+      description: "Perfect accessories to complete your look",
+      image: 'https://source.unsplash.com/1600x600/?accessories'
     },
     {
       id: 'ad3',
-      title: "Wedding Jewelry",
-      description: "Perfect pieces for your special day",
-      image: 'https://source.unsplash.com/1600x600/?shopping'
+      title: "Timeless Beauty",
+      description: "Classic jewelry that never goes out of style",
+      image: 'https://source.unsplash.com/1600x600/?gold'
     }
   ];
 

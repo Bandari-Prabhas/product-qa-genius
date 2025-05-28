@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { ProductGrid } from '@/components/ProductGrid';
 import { SearchBar } from '@/components/SearchBar';
@@ -14,21 +13,21 @@ const MenProducts = () => {
   const adCarouselItems = [
     {
       id: 'ad1',
-      title: "Men's Fashion Sale",
-      description: "Up to 50% off on premium menswear",
-      image: 'https://source.unsplash.com/1600x600/?men'
+      title: "Men's Fashion Collection",
+      description: "Discover the latest trends in men's fashion",
+      image: 'https://source.unsplash.com/1600x600/?men-fashion'
     },
     {
       id: 'ad2', 
-      title: "New Arrivals",
-      description: "Latest trends in men's clothing",
-      image: 'https://source.unsplash.com/1600x600/?fashion'
+      title: "Premium Menswear",
+      description: "Elevate your style with our premium collection",
+      image: 'https://source.unsplash.com/1600x600/?mens-clothing'
     },
     {
       id: 'ad3',
-      title: "Premium Collection",
-      description: "Exclusive designer wear for men",
-      image: 'https://source.unsplash.com/1600x600/?shopping'
+      title: "Casual & Formal Wear",
+      description: "Perfect outfits for every occasion",
+      image: 'https://source.unsplash.com/1600x600/?men'
     }
   ];
 

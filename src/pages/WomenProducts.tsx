@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { ProductGrid } from '@/components/ProductGrid';
 import { SearchBar } from '@/components/SearchBar';
@@ -16,19 +15,19 @@ const WomenProducts = () => {
       id: 'ad1',
       title: "Women's Fashion Week",
       description: "Exclusive collection for modern women",
-      image: 'https://source.unsplash.com/1600x600/?women'
+      image: 'https://source.unsplash.com/1600x600/?women-fashion'
     },
     {
       id: 'ad2',
       title: "Spring Collection",
       description: "Fresh styles for the new season",
-      image: 'https://source.unsplash.com/1600x600/?fashion'
+      image: 'https://source.unsplash.com/1600x600/?womens-clothing'
     },
     {
       id: 'ad3',
       title: "Designer Dresses",
       description: "Elegant dresses for every occasion",
-      image: 'https://source.unsplash.com/1600x600/?ecommerce'
+      image: 'https://source.unsplash.com/1600x600/?women'
     }
   ];
 
