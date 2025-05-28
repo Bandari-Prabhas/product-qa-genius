@@ -4,14 +4,14 @@ import { ProductGrid } from '@/components/ProductGrid';
 import { SearchBar } from '@/components/SearchBar';
 import { Header } from '@/components/Header';
 import { AdCarousel } from '@/components/AdCarousel';
-import { useFakeStoreProducts } from '@/hooks/useFakeStoreProducts';
+import { useDummyJsonProducts } from '@/hooks/useDummyJsonProducts';
 
 const Index = () => {
   const [searchQuery, setSearchQuery] = useState('');
-  const { products: menProducts } = useFakeStoreProducts("men's clothing");
-  const { products: womenProducts } = useFakeStoreProducts("women's clothing");
-  const { products: electronicsProducts } = useFakeStoreProducts("electronics");
-  const { products: jewelryProducts } = useFakeStoreProducts("jewelery");
+  const { products: menProducts } = useDummyJsonProducts('mens-shirts', 30);
+  const { products: womenProducts } = useDummyJsonProducts('womens-dresses', 30);
+  const { products: electronicsProducts } = useDummyJsonProducts('smartphones', 30);
+  const { products: jewelryProducts } = useDummyJsonProducts('womens-jewellery', 30);
 
   // Advertisement carousel items from Unsplash
   const adCarouselItems = [
@@ -19,19 +19,19 @@ const Index = () => {
       id: 'ad1',
       title: "Mega Sale - Up to 70% Off",
       description: "Shop the biggest sale of the year on all categories",
-      image: 'https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=1200&h=400&fit=crop'
+      image: 'https://source.unsplash.com/1600x600/?shopping'
     },
     {
       id: 'ad2',
       title: "New Arrivals",
       description: "Discover the latest trends in fashion and electronics",
-      image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1200&h=400&fit=crop'
+      image: 'https://source.unsplash.com/1600x600/?ecommerce'
     },
     {
       id: 'ad3',
       title: "Free Shipping",
       description: "Free delivery on orders above ₹1999",
-      image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1200&h=400&fit=crop'
+      image: 'https://source.unsplash.com/1600x600/?sale'
     }
   ];
 

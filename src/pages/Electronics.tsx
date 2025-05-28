@@ -4,11 +4,11 @@ import { ProductGrid } from '@/components/ProductGrid';
 import { SearchBar } from '@/components/SearchBar';
 import { Header } from '@/components/Header';
 import { AdCarousel } from '@/components/AdCarousel';
-import { useFakeStoreProducts } from '@/hooks/useFakeStoreProducts';
+import { useDummyJsonProducts } from '@/hooks/useDummyJsonProducts';
 
 const Electronics = () => {
   const [searchQuery, setSearchQuery] = useState('');
-  const { products, loading, error } = useFakeStoreProducts('electronics');
+  const { products, loading, error } = useDummyJsonProducts('smartphones', 30);
 
   // Advertisement carousel images from Unsplash
   const adCarouselItems = [
@@ -16,19 +16,19 @@ const Electronics = () => {
       id: 'ad1',
       title: "Tech Revolution",
       description: "Latest gadgets and electronics",
-      image: 'https://images.unsplash.com/photo-1468495244123-6c6c332eeece?w=1200&h=400&fit=crop'
+      image: 'https://source.unsplash.com/1600x600/?electronics'
     },
     {
       id: 'ad2',
       title: "Smart Devices",
       description: "Transform your lifestyle with smart tech",
-      image: 'https://images.unsplash.com/photo-1601524909162-ae8725290836?w=1200&h=400&fit=crop'
+      image: 'https://source.unsplash.com/1600x600/?ecommerce'
     },
     {
       id: 'ad3',
       title: "Gaming Zone",
       description: "Ultimate gaming experience awaits",
-      image: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?w=1200&h=400&fit=crop'
+      image: 'https://source.unsplash.com/1600x600/?shopping'
     }
   ];
 

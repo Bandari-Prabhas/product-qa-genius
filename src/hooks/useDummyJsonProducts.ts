@@ -16,9 +16,8 @@ interface DummyJsonProduct {
   images: string[];
 }
 
-export const useDummyJsonProducts = () => {
+export const useDummyJsonProducts = (category?: string, limit: number = 30) => {
   const [products, setProducts] = useState<Product[]>([]);
-  const [categories, setCategories] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -45,27 +44,25 @@ export const useDummyJsonProducts = () => {
   });
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchProducts = async () => {
       try {
         setLoading(true);
         
-        // Fetch products and categories in parallel
-        const [productsResponse, categoriesResponse] = await Promise.all([
-          fetch('https://dummyjson.com/products?limit=50'),
-          fetch('https://dummyjson.com/products/categories')
-        ]);
-
-        if (!productsResponse.ok || !categoriesResponse.ok) {
-          throw new Error('Failed to fetch data');
+        let url = `https://dummyjson.com/products?limit=${limit}`;
+        
+        if (category) {
+          url = `https://dummyjson.com/products/category/${category}`;
         }
-
-        const productsData = await productsResponse.json();
-        const categoriesData = await categoriesResponse.json();
-
-        const transformedProducts = productsData.products.map(transformProduct);
+        
+        const response = await fetch(url);
+        if (!response.ok) {
+          throw new Error('Failed to fetch products');
+        }
+        
+        const data = await response.json();
+        const transformedProducts = data.products.map(transformProduct);
         
         setProducts(transformedProducts);
-        setCategories(categoriesData);
         setError(null);
       } catch (err) {
         setError(err instanceof Error ? err.message : 'An error occurred');
@@ -75,9 +72,8 @@ export const useDummyJsonProducts = () => {
       }
     };
 
-    fetchData();
-  }, []);
+    fetchProducts();
+  }, [category, limit]);
 
-  return { products, categories, loading, error };
+  return { products, loading, error };
 };
-

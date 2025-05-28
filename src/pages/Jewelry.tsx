@@ -4,11 +4,11 @@ import { ProductGrid } from '@/components/ProductGrid';
 import { SearchBar } from '@/components/SearchBar';
 import { Header } from '@/components/Header';
 import { AdCarousel } from '@/components/AdCarousel';
-import { useFakeStoreProducts } from '@/hooks/useFakeStoreProducts';
+import { useDummyJsonProducts } from '@/hooks/useDummyJsonProducts';
 
 const Jewelry = () => {
   const [searchQuery, setSearchQuery] = useState('');
-  const { products, loading, error } = useFakeStoreProducts('jewelery');
+  const { products, loading, error } = useDummyJsonProducts('womens-jewellery', 30);
 
   // Advertisement carousel images from Unsplash
   const adCarouselItems = [
@@ -16,19 +16,19 @@ const Jewelry = () => {
       id: 'ad1',
       title: "Luxury Jewelry",
       description: "Exquisite pieces for special moments",
-      image: 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=1200&h=400&fit=crop'
+      image: 'https://source.unsplash.com/1600x600/?jewelry'
     },
     {
       id: 'ad2',
       title: "Diamond Collection",
       description: "Sparkle with our premium diamond jewelry",
-      image: 'https://images.unsplash.com/photo-1602173574767-37ac01994b2a?w=1200&h=400&fit=crop'
+      image: 'https://source.unsplash.com/1600x600/?ecommerce'
     },
     {
       id: 'ad3',
       title: "Wedding Jewelry",
       description: "Perfect pieces for your special day",
-      image: 'https://images.unsplash.com/photo-1611652022419-a9419f74343d?w=1200&h=400&fit=crop'
+      image: 'https://source.unsplash.com/1600x600/?shopping'
     }
   ];
 
