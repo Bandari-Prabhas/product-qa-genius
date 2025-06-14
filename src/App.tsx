@@ -4,15 +4,13 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Index from "./pages/Index";
-import ProductDetail from "./pages/ProductDetail";
-import MenProducts from "./pages/MenProducts";
-import WomenProducts from "./pages/WomenProducts";
-import Electronics from "./pages/Electronics";
-import Jewelry from "./pages/Jewelry";
-import LikedProducts from "./pages/LikedProducts";
-import UserProfile from "./pages/UserProfile";
-import NotFound from "./pages/NotFound";
+import HomePage from "./pages/HomePage";
+import CreateTicket from "./pages/CreateTicket";
+import ViewTickets from "./pages/ViewTickets";
+import KnowledgeBase from "./pages/KnowledgeBase";
+import Dashboard from "./pages/Dashboard";
+import LoginPage from "./pages/LoginPage";
+import Navbar from "./components/Navbar";
 
 const queryClient = new QueryClient();
 
@@ -22,17 +20,17 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/product/:id" element={<ProductDetail />} />
-          <Route path="/men" element={<MenProducts />} />
-          <Route path="/women" element={<WomenProducts />} />
-          <Route path="/electronics" element={<Electronics />} />
-          <Route path="/jewelry" element={<Jewelry />} />
-          <Route path="/liked" element={<LikedProducts />} />
-          <Route path="/profile" element={<UserProfile />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+        <div className="min-h-screen bg-gray-50">
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/create-ticket" element={<CreateTicket />} />
+            <Route path="/tickets" element={<ViewTickets />} />
+            <Route path="/knowledge" element={<KnowledgeBase />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+          </Routes>
+        </div>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
