@@ -3,7 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { Plus, Search, Headphones, Zap } from 'lucide-react';
+import { Plus, Search, Headphones, Zap, Book } from 'lucide-react';
 
 const HomePage = () => {
   return (
